@@ -20,7 +20,9 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> getReviews(int productId) {
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
         return List.of(
-                new Review(1, productId, "posto", "trabala", "Chicko chiki", serviceUtil.getServiceAddress())
+                new Review(productId, 1, "Author 1", "Subject 1", "Content 1", serviceUtil.getServiceAddress()),
+                new Review(productId, 2, "Author 2", "Subject 2", "Content 2", serviceUtil.getServiceAddress()),
+                new Review(productId, 3, "Author 3", "Subject 3", "Content 3", serviceUtil.getServiceAddress())
         );
     }
 }

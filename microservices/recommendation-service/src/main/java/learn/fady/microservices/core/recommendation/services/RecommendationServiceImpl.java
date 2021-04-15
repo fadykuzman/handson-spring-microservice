@@ -22,7 +22,9 @@ public class RecommendationServiceImpl implements RecommendationService {
     public List<Recommendation> getRecommendations(int productId) {
         if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
         return List.of(
-                new Recommendation(1, productId, "tido", 4, "bla bla", serviceUtil.getServiceAddress())
+                new Recommendation(productId, 1, "Author 1", 1, "Content 1", serviceUtil.getServiceAddress()),
+                new Recommendation(productId, 2, "Author 2", 2, "Content 2", serviceUtil.getServiceAddress()),
+                new Recommendation(productId, 3, "Author 3", 3, "Content 3", serviceUtil.getServiceAddress())
         );
     }
 }

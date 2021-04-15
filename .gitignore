@@ -4,6 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+.test-em-all.sh.swp
+test-em-all.sh
+test-em-all.bash
 
 ### STS ###
 .apt_generated
