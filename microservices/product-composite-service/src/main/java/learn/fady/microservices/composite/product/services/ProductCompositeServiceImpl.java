@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RestController
 public class ProductCompositeServiceImpl implements ProductCompositeService {
     private final ServiceUtil serviceUtil;
-    private ProductCompositeIntegration integration;
+    private final ProductCompositeIntegration integration;
 
     @Autowired
     public ProductCompositeServiceImpl(ServiceUtil serviceUtil, ProductCompositeIntegration integration) {

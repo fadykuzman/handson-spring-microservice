@@ -2,10 +2,12 @@ package learn.fady.api.core.product;
 
 
 public class Product {
-    private final int id;
-    private final String name;
-    private final int weight;
-    private final String serviceAddress;
+    private int id;
+    private String name;
+    private int weight;
+    private String serviceAddress;
+
+    public Product() {}
 
 
     public Product(int id, String name, int weight, String serviceAddress) {
