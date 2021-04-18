@@ -1,5 +1,6 @@
 package learn.fady.microservices.composite.product.services;
 
+import io.swagger.annotations.Api;
 import learn.fady.api.composite.*;
 import learn.fady.api.core.product.Product;
 import learn.fady.api.core.recommendation.Recommendation;
