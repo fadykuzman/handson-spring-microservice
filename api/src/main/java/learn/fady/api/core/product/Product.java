@@ -32,4 +32,7 @@ public class Product {
     public String getServiceAddress() {
         return serviceAddress;
     }
+
+    public void setServiceAddress(String serviceAddress) {
+    }
 }

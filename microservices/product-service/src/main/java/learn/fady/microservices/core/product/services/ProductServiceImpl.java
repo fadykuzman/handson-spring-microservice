@@ -1,7 +1,9 @@
 package learn.fady.microservices.core.product.services;
 
+import com.mongodb.DuplicateKeyException;
 import learn.fady.api.core.product.Product;
 import learn.fady.api.core.product.ProductService;
+import learn.fady.microservices.core.product.persistence.ProductEntity;
 import learn.fady.microservices.core.product.persistence.ProductRepository;
 import learn.fady.util.exceptions.InvalidInputException;
 import learn.fady.util.exceptions.NotFoundException;
@@ -17,23 +19,42 @@ public class ProductServiceImpl implements ProductService {
 
     private final ServiceUtil serviceUtil;
     private final ProductRepository repository;
+    private final ProductMapper mapper;
 
     @Autowired
-    public ProductServiceImpl(ServiceUtil serviceUtil, ProductRepository repository) {
+    public ProductServiceImpl(ServiceUtil serviceUtil, ProductRepository repository, ProductMapper mapper) {
         this.serviceUtil = serviceUtil;
         this.repository = repository;
+        this.mapper = mapper;
     }
 
 
     @Override
     public Product getProduct(int id) {
         if (id < 1) throw new InvalidInputException("Invalid productId: " + id);
-        if (id == 13) throw new NotFoundException("No Product found for productId: " + id);
-        return new Product(id, "name-" + id, 123, serviceUtil.getServiceAddress());
+        ProductEntity entity = repository.findByProductId(id)
+                .orElseThrow(() -> new NotFoundException("No product found for Id: " + id));
+        Product response = mapper.entityToApi(entity);
+        response.setServiceAddress(serviceUtil.getServiceAddress());
+        return response;
     }
 
     @Override
     public Product createProduct(Product body) {
-        return null;
+        try {
+            ProductEntity entity = mapper.apiToEntity(body);
+            ProductEntity newEntity = repository.save(entity);
+            return mapper.entityToApi(newEntity);
+        } catch (DuplicateKeyException e) {
+            throw new InvalidInputException("Duplicate key, Product Id: " + body.getId());
+        }
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        repository.findByProductId(id)
+                .ifPresent(
+                        repository::delete
+                );
     }
 }

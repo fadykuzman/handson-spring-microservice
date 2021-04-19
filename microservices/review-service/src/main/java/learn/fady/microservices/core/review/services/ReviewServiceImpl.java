@@ -25,4 +25,14 @@ public class ReviewServiceImpl implements ReviewService {
                 new Review(productId, 3, "Author 3", "Subject 3", "Content 3", serviceUtil.getServiceAddress())
         );
     }
+
+    @Override
+    public Review createReview(Review body) {
+        return null;
+    }
+
+    @Override
+    public void deleteReviews(int productId) {
+
+    }
 }

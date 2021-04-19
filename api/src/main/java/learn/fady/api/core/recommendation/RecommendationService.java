@@ -1,7 +1,6 @@
 package learn.fady.api.core.recommendation;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,4 +10,14 @@ public interface RecommendationService {
             produces = "application/json"
     )
     List<Recommendation> getRecommendations(@RequestParam(value = "productId", required = true) int productId);
+
+    @PostMapping(
+            value = "/recommendation",
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    Recommendation createRecommendation(@RequestBody Recommendation body);
+
+    @DeleteMapping(value = "/recommendation/{productId}")
+    void deleteRecommendations(@PathVariable int productId);
 }
