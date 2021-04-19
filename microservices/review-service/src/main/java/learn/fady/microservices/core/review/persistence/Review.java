@@ -18,14 +18,16 @@ public class Review {
     private String subject;
     private String content;
 
-    public Review(int id, int version, int productId, int reviewId, String author, String subject, String content) {
-        this.id = id;
-        this.version = version;
+    public Review(int productId, int reviewId, String author, String subject, String content) {
         this.productId = productId;
         this.reviewId = reviewId;
         this.author = author;
         this.subject = subject;
         this.content = content;
+    }
+
+    public Review() {
+
     }
 
     public int getId() {

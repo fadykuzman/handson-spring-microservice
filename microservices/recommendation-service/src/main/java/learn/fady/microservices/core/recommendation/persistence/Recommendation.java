@@ -21,9 +21,7 @@ public class Recommendation {
     private int rating;
     private String content;
 
-    public Recommendation(String id, Integer version, int productId, int recommendationId, String author, int rating, String content) {
-        this.id = id;
-        this.version = version;
+    public Recommendation(int productId, int recommendationId, String author, int rating, String content) {
         this.productId = productId;
         this.recommendationId = recommendationId;
         this.author = author;

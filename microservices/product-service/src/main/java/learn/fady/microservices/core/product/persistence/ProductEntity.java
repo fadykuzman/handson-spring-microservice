@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "products")
-public class Product {
+public class ProductEntity {
 
     @Id
     private String id;
@@ -20,9 +20,7 @@ public class Product {
     private String name;
     private int weight;
 
-    public Product(String id, Integer version, int productId, String name, int weight) {
-        this.id = id;
-        this.version = version;
+    public ProductEntity(int productId, String name, int weight) {
         this.productId = productId;
         this.name = name;
         this.weight = weight;
@@ -66,5 +64,16 @@ public class Product {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", version=" + version +
+                ", productId=" + productId +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                '}';
     }
 }
