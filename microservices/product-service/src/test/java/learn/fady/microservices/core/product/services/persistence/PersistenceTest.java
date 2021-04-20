@@ -3,6 +3,7 @@ package learn.fady.microservices.core.product.services.persistence;
 import learn.fady.microservices.core.product.persistence.ProductEntity;
 import learn.fady.microservices.core.product.persistence.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,13 +76,14 @@ public class PersistenceTest {
         assertEqualsProduct(saved, entity.get());
     }
 
-    @Test @Deprecated
+    @Disabled @Test
     void duplicateError() {
         ProductEntity entity = new ProductEntity(saved.getProductId(), "n", 1);
         LOG.debug("expected: " + entity.toString());
         LOG.debug("actual: " + saved.toString());
         assertThrows(DuplicateKeyException.class, () -> repository.save(entity) );
     }
+
 
     @Test
     void optimisticLockError() {
