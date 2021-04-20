@@ -1,10 +1,10 @@
-package learn.fady.microservices.core.review;
+package learn.fady.microservices.core.recommendation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReviewServiceApplicationTests {
+class RecommendationEntityServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

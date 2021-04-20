@@ -19,7 +19,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstructVersion
-	implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	implementation project(':api')

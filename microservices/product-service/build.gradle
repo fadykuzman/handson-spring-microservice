@@ -8,6 +8,7 @@ group = 'learn.fady.microservices.core.product'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
 def mapstructVersion = '1.4.2.Final'
+def mapstructSpringExtensionsVersion  = '0.0.2'
 
 repositories {
 	mavenCentral()
@@ -18,14 +19,22 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+
 	implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstructVersion
-	implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+	annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+	testAnnotationProcessor group: 	'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	implementation project(':api')
 	implementation project(':util')
 }
 
+compileJava {
+	options.compilerArgs += [
+			'-Amapstruct.defaultComponentModel=spring'
+	]
+}
 test {
 	useJUnitPlatform()
 }

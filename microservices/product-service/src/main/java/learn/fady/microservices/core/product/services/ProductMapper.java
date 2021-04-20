@@ -5,7 +5,9 @@ import learn.fady.microservices.core.product.persistence.ProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
     @Mappings({

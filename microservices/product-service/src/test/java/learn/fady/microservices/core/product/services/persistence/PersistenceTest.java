@@ -1,6 +1,5 @@
 package learn.fady.microservices.core.product.services.persistence;
 
-import com.mongodb.DuplicateKeyException;
 import learn.fady.microservices.core.product.persistence.ProductEntity;
 import learn.fady.microservices.core.product.persistence.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,9 +36,10 @@ public class PersistenceTest {
     @BeforeEach
     void setUp() {
         repository.deleteAll();
-        ProductEntity productEntity = new ProductEntity(1, "n", 1);
-        saved =  repository.save(productEntity);
-        assertEqualsProduct(productEntity, saved);
+        ProductEntity entity = new ProductEntity(1, "n", 1);
+        saved = repository.save(entity);
+
+        assertEqualsProduct(entity, saved);
     }
 
     @Test
@@ -74,7 +75,7 @@ public class PersistenceTest {
         assertEqualsProduct(saved, entity.get());
     }
 
-    @Test
+    @Test @Deprecated
     void duplicateError() {
         ProductEntity entity = new ProductEntity(saved.getProductId(), "n", 1);
         LOG.debug("expected: " + entity.toString());

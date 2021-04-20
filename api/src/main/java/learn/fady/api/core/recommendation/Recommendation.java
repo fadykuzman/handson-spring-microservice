@@ -6,7 +6,7 @@ public class Recommendation {
     private final String author;
     private final int rate;
     private final String content;
-    private final String serviceAddress;
+    private String serviceAddress;
 
     public Recommendation(int id, int productId, String author, int rate, String content, String serviceAddress) {
         this.id = id;
@@ -39,5 +39,9 @@ public class Recommendation {
 
     public String getServiceAddress() {
         return serviceAddress;
+    }
+
+    public void setServiceAddress(String serviceAddress) {
+        this.serviceAddress = serviceAddress;
     }
 }
